@@ -59,6 +59,7 @@ public class JwtUtil {
 			Jws<Claims> jws = parser.parseClaimsJws(token);
 			Claims claims = jws.getBody();
 			validate = claims.getExpiration().after(new Date());
+			//new Date기준으로 미래의 시간이냐 즉 현재시간보다 유효기간이 더 이후 시간이냐
 			if(validate) {
 				long remainMillsecs = claims.getExpiration().getTime() - new Date().getTime();
 				logger.info(""+remainMillsecs/1000 + "초 남았음");
@@ -70,16 +71,16 @@ public class JwtUtil {
 	}
 	
 	//테스트
-	public static void main(String[] args) {
-		String jwt = createToken("user1");
-		System.out.println(jwt);
-		logger.info(jwt);
-		
-		try {Thread.sleep(5000); }catch(Exception e) {};
-		
-		if(validateToken(jwt)) {
-			String uid = getUid(jwt);
-			logger.info(uid);
-		}
-	}
+//	public static void main(String[] args) {
+//		String jwt = createToken("user1");
+//		System.out.println(jwt);
+//		logger.info(jwt);
+//		
+//		try {Thread.sleep(5000); }catch(Exception e) {};
+//		
+//		if(validateToken(jwt)) {
+//			String uid = getUid(jwt);
+//			logger.info(uid);
+//		}
+//	}
 }

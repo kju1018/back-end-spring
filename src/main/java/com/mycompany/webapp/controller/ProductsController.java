@@ -47,7 +47,8 @@ public class ProductsController {
 		
 		Map<String, Object> map = new HashMap<>();
 		map.put("pager", pager);
-		map.put("boards", list);
+		map.put("products", list);
+		logger.info(list.size()+"");
 		return map;
 	}
 	

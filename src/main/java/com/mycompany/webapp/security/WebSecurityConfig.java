@@ -33,7 +33,7 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter{
 	@Autowired
 	private DataSource dataSource;
 	
-	@Autowired
+	@Autowired//@Bean을 사용한 관리객체들은 @Autowired로 자동 주입
 	private UserDetailsService userDetailsService;
 	
 	@Override
@@ -56,7 +56,6 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter{
 		//JWT 인증 필터 추가
 		http.addFilterBefore(new JwtAuthenticationFilter(userDetailsService),UsernamePasswordAuthenticationFilter.class);//특정 필터 이전에 추가해야해 라는 뜻
 		
-
 		http.authorizeRequests()
 			.expressionHandler(securityExpressionHandler())//권한 계층 정보 설정
 			//요청 경로 권한 설정
@@ -91,7 +90,7 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter{
 	} 
 	
 	//인증된 정보를 관리하는 객체를 Spring 관리 객체로 등록
-	//JwtAuthenticationFilter에서 사용
+	//AuthController에서 사용
 	@Bean
 	@Override
 	public AuthenticationManager authenticationManagerBean() throws Exception {

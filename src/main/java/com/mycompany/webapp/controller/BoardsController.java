@@ -60,7 +60,9 @@ public class BoardsController {
 	         board.setBattachsname(new Date().getTime() + "-" + mf.getOriginalFilename());
 	         board.setBattachtype(mf.getContentType());
 	         try {
-	            File file = new File("D:/Study/Users/MyProjects/uploadfiles/" + board.getBattachsname());
+//	            File file = new File("D:/Study/Users/MyProjects/uploadfiles/" + board.getBattachsname());
+	        	File file = new File("F:/uploadfiles/" + board.getBattachsname());
+	            
 	            mf.transferTo(file);
 	         } catch (Exception e) {
 	            e.printStackTrace();
@@ -86,7 +88,8 @@ public class BoardsController {
 	         if(battachoname == null) return;
 	         battachoname = new String(battachoname.getBytes("UTF-8"),"ISO-8859-1");
 	         String battachsname = board.getBattachsname();      
-	         String battachspath = "D:/Study/Users/MyProjects/uploadfiles/" + battachsname;
+//	         String battachspath = "D:/Study/Users/MyProjects/uploadfiles/" + battachsname;
+	         String battachspath = "F:/uploadfiles/" + battachsname;
 	         String battachtype = board.getBattachtype();
 	   
 	         response.setHeader("Content-Disposition", "attachment; filename=\""+battachoname+"\";");
@@ -111,7 +114,8 @@ public class BoardsController {
 	         board.setBattachsname(new Date().getTime() + "-" + mf.getOriginalFilename());
 	         board.setBattachtype(mf.getContentType());
 	         try {
-	            File file = new File("D:/Study/Users/MyProjects/uploadfiles/" + board.getBattachsname());
+//	            File file = new File("D:/Study/Users/MyProjects/uploadfiles/" + board.getBattachsname());
+		        	File file = new File("F:/uploadfiles/" + board.getBattachsname());
 	            mf.transferTo(file);
 	         } catch (Exception e) {
 	            e.printStackTrace();
